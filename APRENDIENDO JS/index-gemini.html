@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Profesional</title>
+    <style>
+        :root {
+            --primary-color: #FFCF15;
+            --secondary-color: #00477A;
+            --text-color: #333;
+            --bg-color: #f4f4f9;
+            --footer-bg-color: #00335c;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .header nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .main-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .main-content h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .main-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #FFDE59;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background-color: var(--footer-bg-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+            margin-top: 2rem;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header nav {
+                margin-top: 1rem;
+            }
+
+            .header nav a {
+                margin: 0 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Mi Página Profesional</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Servicios</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h2>Bienvenido a mi sitio web</h2>
+        <p>Este es un ejemplo de una página web profesional y responsiva. Puedes personalizar este contenido a tu gusto para mostrar tus proyectos, servicios o información personal.</p>
+        
+        <button class="cta-button" onclick="mi_primer_algoritmo()">Ejecutar Algoritmo</button>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Mi Página Profesional. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="aprendiendo.js"></script>
+
+    <script>
+        // Esta es la función solicitada.
+        // Se recomienda moverla al archivo 'aprendiendo.js'
+        // cuando se agreguen más funciones.
+        function mi_primer_algoritmo() {
+            alert('¡Hola! Has ejecutado mi primer algoritmo correctamente.');
+        }
+    </script>
+</body>
+</html>

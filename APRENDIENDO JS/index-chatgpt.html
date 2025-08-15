@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto de Algoritmos</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        :root {
+            --color-primario: #FFCF15;
+            --color-secundario: #00477A;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--color-secundario);
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer {
+            background-color: var(--color-primario);
+            color: #000;
+            text-align: center;
+            padding: 1rem 2rem;
+        }
+
+        button {
+            background-color: var(--color-primario);
+            color: #000;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #e6b600;
+        }
+
+        @media (max-width: 600px) {
+            header, footer {
+                padding: 1rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bienvenido a mi proyecto de algoritmos</h1>
+    </header>
+
+    <main>
+        <p>Haz clic en el botón para ejecutar tu primer algoritmo:</p>
+        <button onclick="mi_primer_algoritmo()">Ejecutar Algoritmo</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 - Mi Proyecto de Aprendizaje en JavaScript</p>
+    </footer>
+
+    <!-- Archivo JS donde estarán tus funciones -->
+    <script src="aprendiendo.js"></script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo de Algoritmos | aprendiendo.js</title>
+  <meta name="description" content="Plantilla responsive con cabecera, pie de página y botón para ejecutar mi_primer_algoritmo desde aprendiendo.js." />
+
+  <style>
+    :root{
+      --color-primario: #FFCF15;
+      --color-secundario: #00477A;
+      --color-secundario-oscuro: #003a63;
+      --color-texto: #0e1a24;
+      --color-claro: #f7f9fc;
+      --color-borde: #e5eaf0;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+      --shadow-md: 0 6px 18px rgba(0,0,0,.12);
+      --radius: 12px;
+    }
+
+    /* Reset y tipografía */
+    *,*::before,*::after{ box-sizing: border-box; }
+    html,body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--color-texto);
+      background: white;
+      line-height: 1.5;
+    }
+    img{ max-width: 100%; display: block; }
+    a{ color: inherit; text-decoration: none; }
+    .container{ width: min(1100px, 92%); margin: 0 auto; }
+
+    /* Cabecera */
+    header{
+      background: var(--color-secundario);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .9rem 0;
+    }
+    .brand{
+      display: flex; align-items: center; gap: .6rem; font-weight: 700; letter-spacing: .3px;
+    }
+    .brand__logo{
+      width: 36px; height: 36px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--color-primario), #ffd84b);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.15), 0 4px 10px rgba(0,0,0,.15);
+    }
+    .nav__links{
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .nav__links a{
+      color: #eaf4ff; opacity: .9; padding: .4rem .6rem; border-radius: 8px;
+    }
+    .nav__links a:hover, .nav__links a:focus-visible{ background: rgba(255,255,255,.1); outline: none; }
+    .nav__cta{
+      background: var(--color-primario); color: #1a1400; font-weight: 700;
+      padding: .6rem .9rem; border-radius: 10px; border: none; cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0,0,0,.15);
+    }
+    .nav__cta:hover{ filter: brightness(1.02); transform: translateY(-1px); }
+    .nav__toggle{
+      display: none; background: transparent; border: 1px solid rgba(255,255,255,.35);
+      color: #fff; padding: .45rem .6rem; border-radius: 8px; cursor: pointer;
+    }
+
+    /* Hero */
+    .hero{
+      background: linear-gradient(180deg, var(--color-claro), #fff);
+      padding: 3rem 0 2rem;
+    }
+    .hero__grid{
+      display: grid; gap: 2rem; align-items: center;
+      grid-template-columns: 1.2fr 1fr;
+    }
+    .badge{
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: #fff; border: 1px solid var(--color-borde);
+      padding: .35rem .6rem; border-radius: 999px; font-size: .9rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .badge__dot{
+      width: 10px; height: 10px; border-radius: 999px; background: var(--color-primario); box-shadow: 0 0 0 3px rgba(255,207,21,.25);
+    }
+    h1{ font-size: clamp(1.8rem, 3vw, 2.4rem); margin: .6rem 0 0.4rem; }
+    .sub{
+      color: #355; opacity: .95; margin: 0 0 1rem;
+    }
+    .card{
+      background: #fff; border: 1px solid var(--color-borde);
+      border-radius: var(--radius); box-shadow: var(--shadow-md);
+      padding: 1.1rem;
+    }
+    .stack{ display: grid; gap: .8rem; }
+    .row{ display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
+
+    .btn{
+      display: inline-flex; align-items: center; gap: .55rem; cursor: pointer; border: none;
+      padding: .7rem 1rem; border-radius: 10px; font-weight: 700;
+      transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn--primario{
+      background: var(--color-primario); color: #1a1400; box-shadow: 0 8px 18px rgba(255,207,21,.25);
+    }
+    .btn--primario:hover{ transform: translateY(-1px); }
+    .btn--secundario{
+      background: var(--color-secundario); color: #fff; box-shadow: 0 8px 18px rgba(0,71,122,.25);
+    }
+    .btn--secundario:hover{ background: var(--color-secundario-oscuro); }
+
+    .resultado{
+      background: var(--color-claro);
+      border: 1px dashed var(--color-borde);
+      border-radius: 10px;
+      padding: .8rem;
+      min-height: 56px;
+      display: flex; align-items: center;
+      color: #213547;
+      word-break: break-word;
+    }
+
+    /* Sección de features */
+    .features{ padding: 1rem 0 2.2rem; }
+    .features__grid{
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .feature{
+      background:#fff; border: 1px solid var(--color-borde); border-radius: 12px;
+      padding: 1rem; box-shadow: var(--shadow-sm);
+    }
+    .feature h3{ margin: .2rem 0 .4rem; font-size: 1.05rem; }
+    .pill{
+      display:inline-block; font-size:.78rem; padding:.2rem .5rem; border-radius:999px;
+      background: rgba(0,71,122,.08); color: var(--color-secundario); border: 1px solid rgba(0,71,122,.15);
+    }
+
+    /* Pie de página */
+    footer{
+      background: var(--color-secundario);
+      color: #dcefff;
+      margin-top: 2rem;
+    }
+    .footer__inner{
+      display: grid; gap: 1rem; grid-template-columns: 1.6fr 1fr 1fr;
+      padding: 1.6rem 0;
+    }
+    .footer__brand{ opacity: .95; }
+    .footer__links{ display: grid; gap: .35rem; }
+    .footer__links a{ color: #eaf4ff; opacity: .85; }
+    .footer__bottom{
+      border-top: 1px solid rgba(255,255,255,.18);
+      padding: .9rem 0; font-size: .92rem; color:#cfe7ff;
+      display:flex; justify-content: space-between; gap:1rem; flex-wrap: wrap;
+    }
+
+    /* Toast/Aviso */
+    .toast{
+      position: fixed; right: 16px; bottom: 16px; z-index: 100;
+      display: grid; gap: .6rem; width: min(360px, 92%);
+    }
+    .toast__item{
+      display: flex; align-items: flex-start; gap: .7rem;
+      background: #fff; border: 1px solid var(--color-borde); border-left: 5px solid var(--color-primario);
+      box-shadow: var(--shadow-md); border-radius: 10px; padding: .7rem .8rem;
+      animation: slideIn .2s ease-out;
+    }
+    .toast__item--success{ border-left-color: #22c55e; }
+    .toast__item--warning{ border-left-color: #f59e0b; }
+    .toast__item--error{ border-left-color: #ef4444; }
+    .toast__title{ font-weight: 700; margin: 0 0 .15rem; }
+    .toast__text{ margin: 0; color: #334; }
+    .toast__close{ margin-left: auto; background: transparent; border: none; cursor: pointer; font-size: 1.1rem; color: #667; }
+    @keyframes slideIn{ from{ transform: translateY(10px); opacity: 0; } to{ transform: translateY(0); opacity: 1; } }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero__grid{ grid-template-columns: 1fr; }
+      .features__grid{ grid-template-columns: repeat(2, 1fr); }
+      .footer__inner{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px){
+      .nav__toggle{ display: inline-flex; }
+      .nav__links{ display: none; width: 100%; }
+      .nav__links.abierto{
+        display: grid; gap: .5rem; padding-top: .6rem;
+      }
+      .features__grid{ grid-template-columns: 1fr; }
+      .footer__inner{ grid-template-columns: 1fr; }
+    }
+
+    /* Accesibilidad foco */
+    :focus-visible{
+      outline: 3px solid rgba(255,207,21,.6);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabecera -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Principal">
+      <div class="brand">
+        <span class="brand__logo" aria-hidden="true"></span>
+        <span>aprendiendo.js</span>
+      </div>
+
+      <button id="nav-toggle" class="nav__toggle" aria-expanded="false" aria-controls="menu">Menú</button>
+
+      <nav id="menu" class="nav__links">
+        <a href="#inicio">Inicio</a>
+        <a href="#algoritmo">Algoritmo</a>
+        <a href="#acerca">Acerca</a>
+        <button class="nav__cta" id="btn-ejecutar-nav">Ejecutar ahora</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero / principal -->
+  <main id="inicio" class="hero">
+    <div class="container hero__grid">
+      <section>
+        <span class="badge"><span class="badge__dot"></span> Listo para tus funciones</span>
+        <h1>Integra y prueba tus algoritmos en segundos</h1>
+        <p class="sub">Coloca tus funciones dentro de <strong>aprendiendo.js</strong> y ejecútalas desde esta interfaz. El color primario y secundario ya están aplicados con un estilo profesional y responsive.</p>
+
+        <div class="row">
+          <button id="btn-ejecutar" class="btn btn--primario">
+            <!-- ícono simple -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Ejecutar mi_primer_algoritmo()
+          </button>
+          <a class="btn btn--secundario" href="#algoritmo">Ver resultado</a>
+        </div>
+      </section>
+
+      <aside class="card stack" id="algoritmo" aria-live="polite" aria-atomic="true">
+        <div class="row">
+          <span class="pill">Salida del algoritmo</span>
+        </div>
+        <div id="salida-algoritmo" class="resultado">
+          Aún no has ejecutado nada. Pulsa el botón para probar mi_primer_algoritmo().
+        </div>
+        <small style="color:#566; opacity:.9">Sugerencia: haz que tu función retorne un valor para verlo aquí.</small>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <div class="features__grid">
+        <div class="feature">
+          <h3>Responsive</h3>
+          <p>Diseño fluido que se adapta a móviles, tablets y escritorio.</p>
+        </div>
+        <div class="feature">
+          <h3>Colores de marca</h3>
+          <p>Primario <strong>#FFCF15</strong> y secundario <strong>#00477A</strong> en botones, cabecera y pie.</p>
+        </div>
+        <div class="feature">
+          <h3>Listo para crecer</h3>
+          <p>Conecta más funciones desde <strong>aprendiendo.js</strong> y añádelas a la UI cuando quieras.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pie de página -->
+  <footer role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <div class="brand">
+          <span class="brand__logo" aria-hidden="true"></span>
+          <span><strong>aprendiendo.js</strong></span>
+        </div>
+        <p style="margin:.6rem 0 0;">Plantilla minimalista para probar algoritmos en un clic.</p>
+      </div>
+      <nav class="footer__links" aria-label="Recursos">
+        <a href="#inicio">Inicio</a>
+        <a href="#algoritmo">Resultado</a>
+        <a href="#acerca">Acerca</a>
+      </nav>
+      <div class="footer__links">
+        <a href="javascript:void(0)">Privacidad</a>
+        <a href="javascript:void(0)">Términos</a>
+        <a href="javascript:void(0)">Contacto</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© <span id="year"></span> aprendiendo.js</span>
+      <span>Hecho con <span aria-label="amor" title="amor">❤</span> y buen café</span>
+    </div>
+  </footer>
+
+  <!-- Contenedor de avisos -->
+  <div class="toast" id="toast" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Carga tus funciones aquí -->
+  <script src="aprendiendo.js" defer></script>
+
+  <!-- Lógica de la página -->
+  <script>
+    // Utilidad para toasts/avisos
+    function mostrarAviso(titulo, tipo = 'success', texto = '') {
+      const cont = document.getElementById('toast');
+      const item = document.createElement('div');
+      item.className = `toast__item toast__item--${tipo}`;
+      item.innerHTML = `
+        <div>
+          <p class="toast__title">${titulo}</p>
+          ${texto ? `<p class="toast__text">${texto}</p>` : ``}
+        </div>
+        <button class="toast__close" aria-label="Cerrar aviso">×</button>
+      `;
+      cont.appendChild(item);
+      const cerrar = () => item.remove();
+      item.querySelector('.toast__close').addEventListener('click', cerrar);
+      setTimeout(cerrar, 4500);
+    }
+
+    // Manejo del menú móvil
+    const navToggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('menu');
+    if (navToggle && menu) {
+      navToggle.addEventListener('click', () => {
+        const abierto = menu.classList.toggle('abierto');
+        navToggle.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+      });
+    }
+
+    // Año dinámico en footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Botones para ejecutar el algoritmo
+    const salida = document.getElementById('salida-algoritmo');
+    function ejecutarAlgoritmo() {
+      try {
+        if (typeof window.mi_primer_algoritmo === 'function') {
+          const r = window.mi_primer_algoritmo();
+          const texto = r !== undefined ? String(r) : 'Tu función se ejecutó sin devolver un resultado.';
+          salida.textContent = texto;
+          mostrarAviso('Algoritmo ejecutado', 'success', 'mi_primer_algoritmo() se ejecutó correctamente.');
+        } else {
+          salida.textContent = 'Aún no has definido mi_primer_algoritmo() en aprendiendo.js.';
+          mostrarAviso('Falta la función', 'warning', 'Define "mi_primer_algoritmo" en aprendiendo.js');
+        }
+      } catch (err) {
+        console.error(err);
+        salida.textContent = 'Error: ' + (err?.message || 'Desconocido');
+        mostrarAviso('Error al ejecutar', 'error', 'Revisa la consola para más detalles.');
+      }
+    }
+
+    document.getElementById('btn-ejecutar').addEventListener('click', ejecutarAlgoritmo);
+    document.getElementById('btn-ejecutar-nav').addEventListener('click', ejecutarAlgoritmo);
+  </script>
+</body>
+</html>
