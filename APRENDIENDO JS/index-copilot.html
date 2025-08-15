@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="es">
 <head>
+
+  
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Demo de Algoritmos | aprendiendo.js</title>
@@ -205,6 +207,41 @@
       outline: 3px solid rgba(255,207,21,.6);
       outline-offset: 2px;
     }
+
+
+    .input-fachero {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  border: 2px solid #ccc;
+  border-radius: 8px;
+
+  background-color: #f9f9f9;
+  color: #333;
+
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.input-fachero:focus {
+  outline: none;
+  border-color: #007bff;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+.input-fachero::placeholder {
+  color: #aaa;
+  transition: color 0.3s ease;
+}
+
+.input-fachero:focus::placeholder {
+  color: #007bff;
+}
+
   </style>
 </head>
 <body>
@@ -223,7 +260,6 @@
         <a href="#inicio">Inicio</a>
         <a href="#algoritmo">Algoritmo</a>
         <a href="#acerca">Acerca</a>
-        <button class="nav__cta" id="btn-ejecutar-nav">Ejecutar ahora</button>
       </nav>
     </div>
   </header>
@@ -233,75 +269,36 @@
     <div class="container hero__grid">
       <section>
         <span class="badge"><span class="badge__dot"></span> Listo para tus funciones</span>
-        <h1>Integra y prueba tus algoritmos en segundos</h1>
+        <h1>Integra y prueba tus algoritmos en segundos 123</h1>
         <p class="sub">Coloca tus funciones dentro de <strong>aprendiendo.js</strong> y ejecútalas desde esta interfaz. El color primario y secundario ya están aplicados con un estilo profesional y responsive.</p>
 
-        <div class="row">
+        <div class="row">          
           <button id="btn-ejecutar" class="btn btn--primario">
-            <!-- ícono simple -->
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-            Ejecutar mi_primer_algoritmo()
+            mi_primer_algoritmo
+          </button>   
+        </div>
+        <div class="row"> 
+          <input type="number" class="input-fachero" id="numeroDecimal" placeholder="Ingresa un número decimal">
+          <button onclick="decimalABinario(document.getElementById('numeroDecimal').value)">
+              Convertir a binario
           </button>
-          <a class="btn btn--secundario" href="#algoritmo">Ver resultado</a>
-        </div>
-      </section>
+        </div>       
 
-      <aside class="card stack" id="algoritmo" aria-live="polite" aria-atomic="true">
-        <div class="row">
-          <span class="pill">Salida del algoritmo</span>
-        </div>
-        <div id="salida-algoritmo" class="resultado">
-          Aún no has ejecutado nada. Pulsa el botón para probar mi_primer_algoritmo().
-        </div>
-        <small style="color:#566; opacity:.9">Sugerencia: haz que tu función retorne un valor para verlo aquí.</small>
-      </aside>
+
+
+      </section>
     </div>
   </main>
 
-  <!-- Features -->
-  <section class="features">
-    <div class="container">
-      <div class="features__grid">
-        <div class="feature">
-          <h3>Responsive</h3>
-          <p>Diseño fluido que se adapta a móviles, tablets y escritorio.</p>
-        </div>
-        <div class="feature">
-          <h3>Colores de marca</h3>
-          <p>Primario <strong>#FFCF15</strong> y secundario <strong>#00477A</strong> en botones, cabecera y pie.</p>
-        </div>
-        <div class="feature">
-          <h3>Listo para crecer</h3>
-          <p>Conecta más funciones desde <strong>aprendiendo.js</strong> y añádelas a la UI cuando quieras.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Pie de página -->
   <footer role="contentinfo">
     <div class="container footer__inner">
-      <div class="footer__brand">
-        <div class="brand">
-          <span class="brand__logo" aria-hidden="true"></span>
-          <span><strong>aprendiendo.js</strong></span>
-        </div>
-        <p style="margin:.6rem 0 0;">Plantilla minimalista para probar algoritmos en un clic.</p>
-      </div>
-      <nav class="footer__links" aria-label="Recursos">
-        <a href="#inicio">Inicio</a>
-        <a href="#algoritmo">Resultado</a>
-        <a href="#acerca">Acerca</a>
-      </nav>
-      <div class="footer__links">
-        <a href="javascript:void(0)">Privacidad</a>
-        <a href="javascript:void(0)">Términos</a>
-        <a href="javascript:void(0)">Contacto</a>
-      </div>
+ 
+    
     </div>
     <div class="container footer__bottom">
       <span>© <span id="year"></span> aprendiendo.js</span>
-      <span>Hecho con <span aria-label="amor" title="amor">❤</span> y buen café</span>
     </div>
   </footer>
 
@@ -365,7 +362,6 @@
     }
 
     document.getElementById('btn-ejecutar').addEventListener('click', ejecutarAlgoritmo);
-    document.getElementById('btn-ejecutar-nav').addEventListener('click', ejecutarAlgoritmo);
   </script>
 </body>
 </html>
