@@ -23,14 +23,38 @@
     <input type="text" id="input_name" placeholder="Escribe tu nombre" />
     <input type="text" id="input_edad" placeholder="Escribe tu edad" />
     <input type="text" id="input_correo" placeholder="Escribe tu email" />
-    <input type="text" id="input_carrera" placeholder="Escribe tu carrera" />
+    
+    
+    <select id="selectCarrera">
+        <option value="medicina">MEDICINA</option>
+        <option value="ODONTOLOGIA">ODONTOLOGIA</option>
+        <option value="ING IND">ING IND</option>
+    </select>
+
     <input type="text" id="input_phone" placeholder="Escribe tu telefono" />
     <button onclick="AddEstudiante()">AGREGAR ESTUDIANTE</button>
 
     <p id="resultado"></p>
     <div id="resultado" class="lista-contenedor"></div>
 
+    <select id="estudianteNombreSelect" onchange="mostrarNombreEstudiante()">
+        <option value="">DEFAULT</option>
+    </select>
+
     <div id="tabla-container"></div>
+
+
+    <select id="colorSelect" onchange="mostrarColor()">
+        <option value="">OPCIÓN POR DEFECTO</option>
+    </select>
+
+
+
+
+
+
+
+
 
     <!-- SCRIPT -->
     <script src="scriptUCB.js"></script>

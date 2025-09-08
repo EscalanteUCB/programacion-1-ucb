@@ -64,15 +64,18 @@ ListaObjetoValentina = [
 ListaObjeto = [
   { nombre: "Juan Medina", edad: 15, correo: "jmedina@ucb.edu.bo", carrera: "MEDICINA", telefono: "+591 98789451" },
   { nombre: "Marco Lopez", edad: 21, correo: "mlopex@ucb.edu.bo", carrera: "DERECHO", telefono: "+591 62189451" },
-  { nombre: "Mateo Mateo", edad: 17, correo: "mmateo@ucb.edu.bo", carrera: "", telefono: "+591 63389451" }
+  { nombre: "Mateo Mateo", edad: 17, correo: "mmateo@ucb.edu.bo", carrera: "", telefono: "+591 63389451" },
+    { nombre: "2134 234", edad: 17, correo: "mmateo@ucb.edu.bo", carrera: "", telefono: "+591 63389451" }
+
 ]
 
 function AddEstudiante() {
   var varName = document.getElementById("input_name").value;
   var varEdad = Number(document.getElementById("input_edad").value);
   var varCorreo = document.getElementById("input_correo").value;
-  var varCarrera = document.getElementById("input_carrera").value;
+  var varCarrera = document.getElementById("selectCarrera").value;
   var varPhone = document.getElementById("input_phone").value;
+  //console.log(varCarrera)
 
   var estudiante = {
     nombre: varName,
@@ -91,6 +94,35 @@ function AddEstudiante() {
 
   console.log(ListaObjeto);
   crearTabla(ListaObjeto);
+  CargarUltimoEstudiante(estudiante);
+}
+
+
+function CargarSelectEstudiantes(){
+  const select = document.getElementById("estudianteNombreSelect");
+
+  ListaObjeto.forEach(elemento => {
+    const option = document.createElement("option");
+    option.value = elemento.nombre.toLowerCase();
+    option.textContent = elemento.nombre;
+    select.appendChild(option);
+  });
+}
+CargarSelectEstudiantes();//Al cargar la pag web
+
+function CargarUltimoEstudiante(estudiante){
+  const select = document.getElementById("estudianteNombreSelect");
+
+  const option = document.createElement("option");
+  option.value = estudiante.nombre.toLowerCase();
+  option.textContent = estudiante.nombre;
+  
+  select.appendChild(option);
+}
+
+
+function mostrarNombreEstudiante(){
+
 }
 
 
@@ -138,4 +170,26 @@ function MostrarNombre() {
   ListaObjeto.forEach(element => {
     console.log(2025 - element.edad);
   });
+}
+
+
+function cargarColores() {
+  const colores = ["Rojo", "Verde", "Azul", "Amarillo", "Morado"];
+  const select = document.getElementById("colorSelect");
+
+  colores.forEach(color => {
+    const option = document.createElement("option");
+    option.value = color.toLowerCase();
+    option.textContent = color;
+    select.appendChild(option);
+  });
+}
+
+cargarColores();
+
+// Método que muestra el color seleccionado (click al Select)
+function mostrarColor() {
+  const select = document.getElementById("colorSelect");
+  const valor = select.value;
+  alert(valor);
 }
