@@ -3,31 +3,37 @@ class Matrix {
   cols;
   data;
 
-  constructor(rows, cols, defaultValue) {
-    this.rows = rows;
-    this.cols = cols;
+  constructor(rowsParam, colsParam, defaultValue) {
+    this.rows = rowsParam;
+    this.cols = colsParam;
     this.data = [];
 
-    for (let i = 0; i < rows; i++) {
-      const row = [];
-      for (let j = 0; j < cols; j++) {
-        row.push(defaultValue);
+    for (let i = 0; i < rowsParam; i++) {
+      const rowTemp = [];
+      for (let j = 0; j < colsParam; j++) {
+        rowTemp.push(defaultValue);
       }
-      this.data.push(row);
+      this.data.push(rowTemp);
     }
   }
 
+  //Función de validacion de rango valido en la matriz
+  isValidPosition(row, col) {
+    return row >= 0 && row < this.rows && col >= 0 && col < this.cols;
+  }
+
   setValue(row, col, value) {
-    if (this.isValidPosition(row, col)) {
+    //if (isValidPosition(row, col)) {
       this.data[row][col] = value;
-    }
+    //}
   }
 
   getValue(row, col) {
     if (this.isValidPosition(row, col)) {
       return this.data[row][col];
+    } else {
+      return null
     }
-    return null;
   }
 
   fillRandom(min, max) {
@@ -39,11 +45,17 @@ class Matrix {
     }
   }
 
-  toString() {
-    return this.data.map(row => row.join('\t')).join('\n');
+  fillIncrementRows() {
+    var initialValue = 1;
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        this.data[i][j] = initialValue;
+      }
+      initialValue = initialValue + 2;
+    }
   }
 
-  isValidPosition(row, col) {
-    return row >= 0 && row < this.rows && col >= 0 && col < this.cols;
+  toString() {
+    return this.data.map(row => row.join('\t')).join('\n');
   }
 }

@@ -2,12 +2,14 @@
 const canvas = document.getElementById('matrixCanvas');
 const fillButton = document.getElementById('fillBtn');
 const clearButton = document.getElementById('clearBtn');
+const incrementBtn = document.getElementById('incrementBtn');
+const ejercicio4 = document.getElementById('ejercicio4');
 
 // Contexto de dibujo
 const context = canvas.getContext('2d');
 
-// Instancia de la matriz
-const matrix = new Matrix(5, 5, 0);
+// Instancia de la CLASS matrix
+const matrix = new Matrix(10, 10, 0);
 
 // Inicializa el canvas y dibuja la matriz
 function initializeCanvas() {
@@ -15,6 +17,8 @@ function initializeCanvas() {
   window.addEventListener('resize', drawMatrix);
   fillButton.addEventListener('click', fillMatrix);
   clearButton.addEventListener('click', clearCanvas);
+  incrementBtn.addEventListener('click', fillIncrementRows);
+  ejercicio4.addEventListener('click', testEjercicio4);
 }
 
 // Dibuja la matriz en el canvas
@@ -35,8 +39,8 @@ function drawMatrix() {
       const y = row * cellHeight;
       const value = matrix.getValue(row, col);
 
-      context.strokeRect(x, y, cellWidth, cellHeight);
-      context.fillText(value, x + cellWidth / 2, y + cellHeight / 2);
+      context.strokeRect(x, y, cellWidth, cellHeight);//margen de la celda
+      context.fillText(value, x + cellWidth / 2, y + cellHeight / 2);//dibuja el valor
     }
   }
 }
@@ -44,6 +48,23 @@ function drawMatrix() {
 // Llena la matriz con valores aleatorios y la dibuja
 function fillMatrix() {
   matrix.fillRandom(0, 9);
+  drawMatrix();
+}
+
+// Llena la matriz con valores aleatorios y la dibuja
+function fillIncrementRows() {
+  matrix.fillIncrementRows();
+  drawMatrix();
+}
+
+function testEjercicio4() {
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+      if (i === 0 || i === 9 || j === 0 || j === 9) matrix.setValue(i, j, 1);
+      else if (i === j || i + j === 9) matrix.setValue(i, j, 2);
+      else matrix.setValue(i, j, 0);
+    }
+  }
   drawMatrix();
 }
 
