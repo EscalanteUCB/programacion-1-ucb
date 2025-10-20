@@ -24,7 +24,7 @@ class Matrix {
 
   setValue(row, col, value) {
     //if (isValidPosition(row, col)) {
-      this.data[row][col] = value;
+    this.data[row][col] = value;
     //}
   }
 
@@ -45,15 +45,85 @@ class Matrix {
     }
   }
 
-  fillIncrementRows() {
-    var initialValue = 1;
+  ejecicio1() {
+    var serieX = 1;
+    var serieY = 4;
     for (let i = 0; i < this.rows; i++) {
       for (let j = 0; j < this.cols; j++) {
-        this.data[i][j] = initialValue;
+        this.data[i][j] = serieX;
+        serieX++;
+        if(serieX%4==0){
+          serieX = serieX - 3;
+        }
       }
-      initialValue = initialValue + 2;
+      console.log("fila: " + i)
+      serieX = serieY * (i+1);
+      console.log("serieX: " + serieX)
     }
   }
+  ejercicio2() {
+    console.log("entor al ejercicio2")
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        if (i === 0 || j === 0 || i === 9 || j === 9) {
+          this.data[i][j] = 0;
+        }
+        else {
+          this.data[i][j] = 1;
+        }
+      }
+    }
+  }
+  ejercicio3() {
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+
+        var mitadColumna = Math.floor(this.cols / 2);
+        var mitadFilas = Math.floor(this.rows / 2);
+        if (i === mitadFilas || j === mitadColumna) {
+          this.data[i][j] = 1;
+        }
+      }
+    }
+  }
+
+  ejercicio4() {
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        if (i === 0 || j === 0 || i === 9 || j === 9) {
+          this.data[i][j] = 1;
+        }
+        else {
+          if (i === j || i + j === 9) {
+            this.data[i][j] = 2;
+
+          }
+          else {
+            this.data[i][j] = 0;
+          }
+        }
+      }
+    }
+  }
+  ejercicio5() {
+    const tercio = Math.floor(this.rows / 3);
+
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        if (i < tercio) {
+          this.data[i][j] = 1;
+        } else if (i < 2 * tercio) {
+          this.data[i][j] = 2;
+        } else {
+          this.data[i][j] = 3;
+        }
+      }
+    }
+
+  }
+
+
+
 
   toString() {
     return this.data.map(row => row.join('\t')).join('\n');

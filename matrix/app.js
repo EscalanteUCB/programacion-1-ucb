@@ -2,8 +2,12 @@
 const canvas = document.getElementById('matrixCanvas');
 const fillButton = document.getElementById('fillBtn');
 const clearButton = document.getElementById('clearBtn');
-const incrementBtn = document.getElementById('incrementBtn');
-const ejercicio4 = document.getElementById('ejercicio4');
+const ejercicioUnoBtn = document.getElementById('ejercicioUnoBtn');//Convierto el btn en una var
+const ejercicioDosBtn = document.getElementById('ejercicioDosBtn');
+const ejercicioTresBtn = document.getElementById('ejercicioTresBtn');
+const ejercicioCuatroBtn = document.getElementById('ejercicioCuatroBtn');
+const ejercicioCincoBtn = document.getElementById('ejercicioCincoBtn');
+
 
 // Contexto de dibujo
 const context = canvas.getContext('2d');
@@ -17,8 +21,11 @@ function initializeCanvas() {
   window.addEventListener('resize', drawMatrix);
   fillButton.addEventListener('click', fillMatrix);
   clearButton.addEventListener('click', clearCanvas);
-  incrementBtn.addEventListener('click', fillIncrementRows);
-  ejercicio4.addEventListener('click', testEjercicio4);
+  ejercicioUnoBtn.addEventListener('click', ejercicioUnoBtnApp);//Click a "ejercicioUnoBtn"
+  ejercicioDosBtn.addEventListener('click', ejercicioDosBtnApp);
+  ejercicioTresBtn.addEventListener('click', ejercicioTresBtnApp);
+  ejercicioCuatroBtn.addEventListener('click', ejercicioCuatroBtnApp);
+  ejercicioCincoBtn.addEventListener('click', ejercicioCincoBtnApp);
 }
 
 // Dibuja la matriz en el canvas
@@ -51,26 +58,30 @@ function fillMatrix() {
   drawMatrix();
 }
 
-// Llena la matriz con valores aleatorios y la dibuja
-function fillIncrementRows() {
-  matrix.fillIncrementRows();
-  drawMatrix();
-}
-
-function testEjercicio4() {
-  for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < 10; j++) {
-      if (i === 0 || i === 9 || j === 0 || j === 9) matrix.setValue(i, j, 1);
-      else if (i === j || i + j === 9) matrix.setValue(i, j, 2);
-      else matrix.setValue(i, j, 0);
-    }
-  }
-  drawMatrix();
-}
-
 // Limpia el canvas
 function clearCanvas() {
   context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function ejercicioUnoBtnApp(){
+  matrix.ejecicio1();
+  drawMatrix();
+}
+function ejercicioDosBtnApp(){
+  matrix.ejercicio2();
+  drawMatrix();
+}
+function ejercicioTresBtnApp(){
+  matrix.ejercicio3();
+  drawMatrix();
+}
+function ejercicioCuatroBtnApp(){
+  matrix.ejercicio4();
+  drawMatrix();
+}
+function ejercicioCincoBtnApp(){
+  matrix.ejercicio5();
+  drawMatrix();
 }
 
 // Ejecuta la inicialización
