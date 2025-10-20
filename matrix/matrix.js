@@ -45,22 +45,14 @@ class Matrix {
     }
   }
 
-  ejecicio1() {
-    var serieX = 1;
-    var serieY = 4;
+  ejercicioClase() {
     for (let i = 0; i < this.rows; i++) {
       for (let j = 0; j < this.cols; j++) {
-        this.data[i][j] = serieX;
-        serieX++;
-        if(serieX%4==0){
-          serieX = serieX - 3;
-        }
+        this.data[i][j] = (j % 3) + (i * 3 + 1);
       }
-      console.log("fila: " + i)
-      serieX = serieY * (i+1);
-      console.log("serieX: " + serieX)
     }
   }
+  
   ejercicio2() {
     console.log("entor al ejercicio2")
     for (let i = 0; i < this.rows; i++) {
