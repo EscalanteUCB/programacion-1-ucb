@@ -115,9 +115,24 @@ class Matrix {
   }
 
 
-
-
   toString() {
     return this.data.map(row => row.join('\t')).join('\n');
+  }
+
+    // Método: rellenar la matriz con nombres de imágenes (array de strings)
+  fillFromAssets(imageNames) {
+    let index = 0;
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        if (index < imageNames.length) {
+          // Extraer número del nombre de archivo (ej: "img_5.png" → 5)
+          const match = imageNames[index].match(/\d+/);
+          this.data[i][j] = match ? parseInt(match[0]) : imageNames[index];
+          index++;
+        } else {
+          this.data[i][j] = null; // si no hay más imágenes
+        }
+      }
+    }
   }
 }
