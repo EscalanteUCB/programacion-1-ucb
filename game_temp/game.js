@@ -28,24 +28,31 @@ class Game {
     return new Player(0, 0, 100);
   }
 
-  initControls() {
-    document.addEventListener("keydown", (e) => {
-      switch (e.key) {
-        case "ArrowUp":
-          this.handleMove(-1, 0);
-          break;
-        case "ArrowDown":
-          this.handleMove(1, 0);
-          break;
-        case "ArrowLeft":
-          this.handleMove(0, -1);
-          break;
-        case "ArrowRight":
-          this.handleMove(0, 1);
-          break;
-      }
-    });
-  }
+initControls() {
+  document.addEventListener("keydown", (e) => {
+    switch (e.key) {
+      case "ArrowUp":
+        this.handleMove(-1, 0);
+        new Audio("assets/sounds/move.mp3").play(); 
+        break;
+      case "ArrowDown":
+        this.handleMove(1, 0);
+        new Audio("assets/sounds/move.mp3").play();
+        break;
+      case "ArrowLeft":
+        this.handleMove(0, -1);
+        new Audio("assets/sounds/move.mp3").play();
+        break;
+      case "ArrowRight":
+        this.handleMove(0, 1);
+        new Audio("assets/sounds/move.mp3").play();
+        break;
+      case " ":
+        new Audio("assets/sounds/space.mp3").play();
+        break;
+    }
+  });
+}
 
   handleMove(dr, dc) {
     // Posición antes del intento de movimiento
