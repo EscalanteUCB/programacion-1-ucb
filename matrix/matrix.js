@@ -23,9 +23,9 @@ class Matrix {
   }
 
   setValue(row, col, value) {
-    //if (isValidPosition(row, col)) {
-    this.data[row][col] = value;
-    //}
+    if (this.isValidPosition(row, col)) {
+      this.data[row][col] = value;
+    }
   }
 
   getValue(row, col) {
@@ -54,13 +54,12 @@ class Matrix {
   }
   
   ejercicio2() {
-    console.log("entor al ejercicio2")
+    console.log("entro al ejercicio2");
     for (let i = 0; i < this.rows; i++) {
       for (let j = 0; j < this.cols; j++) {
-        if (i === 0 || j === 0 || i === 9 || j === 9) {
+        if (i === 0 || j === 0 || i === this.rows - 1 || j === this.cols - 1) {
           this.data[i][j] = 0;
-        }
-        else {
+        } else {
           this.data[i][j] = 1;
         }
       }
@@ -82,15 +81,12 @@ class Matrix {
   ejercicio4() {
     for (let i = 0; i < this.rows; i++) {
       for (let j = 0; j < this.cols; j++) {
-        if (i === 0 || j === 0 || i === 9 || j === 9) {
+        if (i === 0 || j === 0 || i === this.rows - 1 || j === this.cols - 1) {
           this.data[i][j] = 1;
-        }
-        else {
-          if (i === j || i + j === 9) {
+        } else {
+          if (i === j || i + j === this.cols - 1) {
             this.data[i][j] = 2;
-
-          }
-          else {
+          } else {
             this.data[i][j] = 0;
           }
         }
