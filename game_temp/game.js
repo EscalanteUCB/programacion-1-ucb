@@ -116,6 +116,7 @@ class Game {
               method: 'POST',
               body: 'El carnet es IMPAR automatico'
             })
+            return;
           }
           nro++;
         }, 3000);
