@@ -30,3 +30,16 @@ for (let i = 0; i < totalImages; i++) {
   };
   images[i] = img;
 }
+
+
+window.addEventListener("load", () => {
+  const audio = document.getElementById("bgm");
+
+  function initAudio() {
+    console.log("sound")
+    audio.play();
+    document.removeEventListener("click", initAudio);
+  }
+
+  document.addEventListener("click", initAudio);
+});

@@ -14,6 +14,7 @@ class Game {
 
     this.player = this.initPlayer();
     this.initControls();
+    
   }
 
   initPlayer() {
