@@ -2,6 +2,7 @@ class Matrix {
   rows;
   cols;
   data;
+  
 
   constructor(rowsParam, colsParam, defaultValue = 1) {
     this.rows = rowsParam;
