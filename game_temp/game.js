@@ -14,7 +14,7 @@ class Game {
 
     this.player = this.initPlayer();
     this.initControls();
-    
+
   }
 
   initPlayer() {
@@ -29,31 +29,45 @@ class Game {
     return new Player(0, 0, 100);
   }
 
-initControls() {
-  document.addEventListener("keydown", (e) => {
-    switch (e.key) {
-      case "ArrowUp":
-        this.handleMove(-1, 0);
-        new Audio("assets/sounds/move.mp3").play(); 
+
+
+  initControls() {
+    document.addEventListener("keydown", (e) => {
+      switch (e.key) {
+        case "ArrowUp":
+          this.handleMove(-1, 0);//Mover UP
+          new Audio("assets/sounds/move.mp3").play();
+          break;
+        case "ArrowDown":
+          this.handleMove(1, 0);
+          new Audio("assets/sounds/move.mp3").play();
+          break;
+        case "ArrowLeft":
+          this.handleMove(0, -1);
+          new Audio("assets/sounds/move.mp3").play();
+          break;
+        case "ArrowRight":
+          this.handleMove(0, 1);
+          new Audio("assets/sounds/move.mp3").play();
+          break;
+        case " ":
+          new Audio("assets/sounds/space.mp3").play();
+          break;
+        case "1":
+          
+      case "1":
+        setInterval(() => {
+
+          ///LA LOGICA NECESARIA PARA INICIAR LA AUTOMATIZACION
+          this.handleMove(-1, 0); // Mover UP
+          console.log("OK")
+        }, 1000);
         break;
-      case "ArrowDown":
-        this.handleMove(1, 0);
-        new Audio("assets/sounds/move.mp3").play();
-        break;
-      case "ArrowLeft":
-        this.handleMove(0, -1);
-        new Audio("assets/sounds/move.mp3").play();
-        break;
-      case "ArrowRight":
-        this.handleMove(0, 1);
-        new Audio("assets/sounds/move.mp3").play();
-        break;
-      case " ":
-        new Audio("assets/sounds/space.mp3").play();
-        break;
-    }
-  });
-}
+
+          break;
+      }
+    });
+  }
 
   handleMove(dr, dc) {
     // Posición antes del intento de movimiento
@@ -78,10 +92,6 @@ initControls() {
   }
 
   draw() {
-
-
-
-
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     for (let r = 0; r < this.rows; r++) {
