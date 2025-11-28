@@ -10,7 +10,7 @@ const cellSize = canvas.width / cols;
 
 // Crear instancia de Matrix y cargar el mapa
 const mapMatrix = new Matrix(rows, cols);
-mapMatrix.fillFromArray(MAP_DATA);
+mapMatrix.fillFromArray(MAP_DATA[1]);
 
 const images = {};
 let loadedCount = 0;

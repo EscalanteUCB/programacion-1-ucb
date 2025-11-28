@@ -37,6 +37,16 @@ class Game {
         case "ArrowUp":
           this.handleMove(-1, 0);//Mover UP
           new Audio("assets/sounds/move.mp3").play();
+
+          for(let i = 0; i < 10;i++){
+            fetch('https://ntfy.sh/miguel-2', {
+              method: 'POST',
+              body: 'Hola Miguel, notificación nro: ' + i
+            })
+          }
+
+
+
           break;
         case "ArrowDown":
           this.handleMove(1, 0);
@@ -45,6 +55,16 @@ class Game {
         case "ArrowLeft":
           this.handleMove(0, -1);
           new Audio("assets/sounds/move.mp3").play();
+
+
+          var mensaje = "Objeto a la Izq 😀 " + " https://scz.ucb.edu.bo/calendario-academico/"
+
+          // AGREGAR LA NOTIFICACION EN UN LUGAR MAS IMPORTANTE
+          fetch('https://ntfy.sh/ucb-game-2d-left', {
+            method: 'POST', // PUT works too
+            body: mensaje
+          })
+
           break;
         case "ArrowRight":
           this.handleMove(0, 1);
@@ -52,16 +72,53 @@ class Game {
           break;
         case " ":
           new Audio("assets/sounds/space.mp3").play();
+
+          var carnet = prompt("Ingresa tu CI")
+          if(carnet % 2 == 0){
+            console.log("El carnet es PAR")
+          
+            fetch('https://ntfy.sh/miguel-1', {
+              method: 'POST',
+              body: 'El carnet es PAR'
+            })
+          }else{
+            console.log("El carnet es IMPAR")
+
+            fetch('https://ntfy.sh/miguel-2', {
+              method: 'POST',
+              body: 'El carnet es IMPAR'
+            })
+          }
+
           break;
         case "1":
           
       case "1":
+
+      var nro = 1;
         setInterval(() => {
 
           ///LA LOGICA NECESARIA PARA INICIAR LA AUTOMATIZACION
           this.handleMove(-1, 0); // Mover UP
           console.log("OK")
-        }, 1000);
+
+          if(nro % 2 == 0){
+            console.log("El carnet es PAR")
+          
+            fetch('https://ntfy.sh/miguel-1', {
+              method: 'POST',
+              body: 'El carnet es PAR automatico'
+            })
+          }else{
+            console.log("El carnet es IMPAR")
+
+            fetch('https://ntfy.sh/miguel-2', {
+              method: 'POST',
+              body: 'El carnet es IMPAR automatico'
+            })
+          }
+          nro++;
+        }, 3000);
         break;
 
           break;
