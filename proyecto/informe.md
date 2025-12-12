@@ -105,7 +105,7 @@ styles.css # Estilos adicionales si se usan
 Pantalla principal y selección de nivel/personaje:
 
 ![Menú Principal](assets/menu.png)
-![Selección de Personaje](assets/character.png)
+![Selección de Personaje](proyecto/assets/charcater.png)
 
 Gameplay dentro del tablero:
 
