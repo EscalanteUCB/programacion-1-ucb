@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sokoban</title>
+
+<style>
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background: url('assets/war_background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* --- MENÚ PRINCIPAL --- */
+.menu {
+  background-color: rgba(0,0,0,0.7);
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  color: #5b4343;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.menu h1 {
+  font-size: 50px;
+  margin-bottom: 30px;
+  color: #f5c542;
+  text-shadow: 2px 2px 5px #000;
+}
+
+.menu button {
+  display: block;
+  width: 220px;
+  margin: 15px auto;
+  padding: 12px;
+  font-size: 18px;  
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #f54242;
+  color: #e7e2e2;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.menu button:hover {
+  background-color: #ff6b6b;
+  transform: scale(1.05);
+}
+
+/* --- SELECCIÓN DE PERSONAJE --- */
+#characterMenu {
+  display: none;
+  background-color: rgba(0,0,0,0.8);
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  color: white;
+}
+
+#characterMenu img {
+  width: 120px;
+  height: 120px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+#characterMenu img:hover {
+  transform: scale(1.15);
+  border-color: gold;
+}
+
+.back-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #555;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+
+<!-- MENÚ PRINCIPAL -->
+<div class="menu" id="menu">
+  <h1>Sokoban</h1>
+  <button onclick="selectLevel()">Seleccionar Nivel</button>
+  <button onclick="openCharacterMenu()">Seleccionar Personaje</button>
+  <button onclick="showHighScores()">PUNTAJES</button>
+  <button onclick="startGame()">Inicio</button>
+</div>
+
+<!-- MENÚ DE SELECCIÓN DE PERSONAJE -->
+<div id="characterMenu">
+  <h2>Elige tu Personaje</h2>
+  <img src="assets/8.png" onclick="selectCharacter(8)">
+  <img src="assets/9.png" onclick="selectCharacter(9)">
+  <img src="assets/10.png" onclick="selectCharacter(10)">
+  <div class="back-btn" onclick="closeCharacterMenu()">Volver</div>
+</div>
+
+<script>
+let selectedLevel = 1;
+let selectedCharacter = 9;
+
+/* ------------------------------
+   SELECCIÓN DE NIVEL
+---------------------------------*/
+function selectLevel() {
+  const level = prompt("Ingrese número de nivel (1,2,3...):", "1");
+  if (level) {
+    selectedLevel = parseInt(level);
+    alert("Nivel " + selectedLevel + " seleccionado.");
+  }
+}
+
+/* ------------------------------
+   MENÚ DE PERSONAJE
+---------------------------------*/
+function openCharacterMenu() {
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("characterMenu").style.display = "block";
+}
+
+function closeCharacterMenu() {
+  document.getElementById("characterMenu").style.display = "none";
+  document.getElementById("menu").style.display = "block";
+}
+
+function selectCharacter(id) {
+  selectedCharacter = id;
+  alert("Personaje seleccionado: " + id);
+  closeCharacterMenu();
+}
+
+/* ------------------------------
+   PUNTAJES
+---------------------------------*/
+function showHighScores() {
+  alert("Puntajes más altos:");
+}
+
+/* ------------------------------
+   INICIAR JUEGO
+---------------------------------*/
+let playerName = "";
+
+function startGame() {
+
+  playerName = prompt("Ingresa tu nombre para comenzar:", "");
+  if (!playerName) {
+    alert("Debes ingresar un nombre.");
+    return;
+  }
+
+  localStorage.setItem("currentLevel", selectedLevel); // clave correcta
+  localStorage.setItem("selectedCharacter", selectedCharacter);
+  localStorage.setItem("playerName", playerName);
+
+  window.location.href = "index.html"; // tu archivo del juego
+}
+function showHighScores() {
+  let scores = JSON.parse(localStorage.getItem("scores") || "[]");
+
+  if (scores.length === 0) {
+    alert("No hay puntajes guardados todavía.");
+    return;
+  }
+
+  let text = "🏆 PUNTAJES MÁS ALTOS 🏆\n\n";
+
+  scores.forEach((s, i) => {
+    text += `${i + 1}. ${s.name} - ${s.score}\n`;
+  });
+
+  alert(text);
+}
+
+
+
+</script>
+<script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="OFOJpHpP0Mjz6WkgK36y1";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+
+</body>
+</html>
